@@ -18,7 +18,7 @@ router.put('/me', requireAuth, upload.single('avatar'), updateProfile);
 
 // ---------- ADMIN ROUTES ----------
 router.get('/', requireAuth, requireRole('admin'), getAllUsers);
-router.get('/:id', requireAuth, requireRole('admin'), getUserById);
+router.get('/:id',  getUserById);
 router.put('/:id', requireAuth, requireRole('admin'), updateUserById);
 router.delete('/:id', requireAuth, requireRole('admin'), deleteUserById);
 
