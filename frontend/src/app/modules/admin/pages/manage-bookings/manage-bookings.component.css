@@ -1,0 +1,62 @@
+/* wrapper */
+.admin-panel { max-width:1100px; margin:auto; padding:1rem; }
+
+/* toolbar */
+.toolbar { display:flex; justify-content:space-between; gap:1rem; margin-bottom:1rem; align-items:center; }
+.toolbar .left { display:flex; gap:8px; align-items:center; width:100%; max-width:600px; }
+.toolbar input { padding:0.6rem 0.75rem; width:320px; border-radius:6px; border:1px solid #e3e3e3; }
+.toolbar button { height:40px; }
+.toolbar .right label { font-size:0.95rem; color:#333; }
+
+/* table card */
+.table-wrap { background:#fff; border-radius:8px; box-shadow:0 6px 20px rgba(0,0,0,0.06); overflow:hidden; }
+
+/* header row (desktop) */
+.table-head {
+  display:grid;
+  grid-template-columns: 1.2fr 1.6fr 1.6fr 2fr 0.9fr 0.9fr 0.9fr 1fr 1fr;
+  padding:0.75rem 1rem;
+  background:#fafafa;
+  font-weight:600;
+  gap:0.5rem;
+  align-items:center;
+}
+
+/* body rows (desktop) */
+.table-body .row {
+  display:grid;
+  grid-template-columns: 1.2fr 1.6fr 1.6fr 2fr 0.9fr 0.9fr 0.9fr 1fr 1fr;
+  padding:0.85rem 1rem;
+  border-top:1px solid #f1f1f1;
+  align-items:center;
+  gap:0.5rem;
+}
+
+.col { color:#222; font-size:0.95rem; }
+
+/* action column */
+.col.actions { display:flex; gap:8px; justify-content:flex-end; align-items:center; }
+
+/* status chip */
+mat-chip { font-weight:600; }
+
+/* pager */
+.pager { display:flex; justify-content:center; gap:1rem; padding:1rem; align-items:center; }
+
+/* mobile: stacked cards */
+@media (max-width: 900px) {
+  .table-head { display:none; }
+  .table-body .row { display:block; padding:12px; }
+  .table-body .row + .row { border-top:1px solid #eee; }
+  .row .col { display:block; margin-bottom:8px; }
+  .row .col.booking-id { font-weight:700; }
+  .row .col.actions { display:flex; justify-content:flex-end; gap:8px; margin-top:8px; }
+  .toolbar input { width:100%; }
+}
+
+/* very small screens: tighten */
+@media (max-width: 420px) {
+  .toolbar { flex-direction:column; align-items:stretch; gap:8px; }
+  .toolbar input { width:100%; }
+  .col { font-size:0.92rem; }
+}

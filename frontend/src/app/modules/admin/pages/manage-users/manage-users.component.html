@@ -1,0 +1,91 @@
+<div class="admin-panel">
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+
+    <div class="left">
+      <input
+        #searchBox
+        placeholder="Search name or email"
+        (keyup.enter)="onSearch(searchBox.value)"
+      />
+
+      <button mat-icon-button (click)="onSearch(searchBox.value)">
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+
+    <div class="right">
+      <label>Rows:
+        <select #limitBox (change)="changeLimit(limitBox.value)">
+          <option *ngFor="let s of pageSizeOptions" [value]="s">
+            {{ s }}
+          </option>
+        </select>
+      </label>
+    </div>
+
+  </div>
+
+
+  <!-- TABLE -->
+  <div class="table-wrap" *ngIf="!loading && users.length > 0; else emptyState">
+
+    <div class="table-head">
+
+      <div class="col" (click)="toggleSort('username')">
+        Name
+        <mat-icon>{{ showSortIcon('username') }}</mat-icon>
+      </div>
+
+      <div class="col" (click)="toggleSort('email')">Email</div>
+      <div class="col">Mobile</div>
+      <div class="col">Role</div>
+      <div class="col">Actions</div>
+
+    </div>
+
+
+    <div class="table-body">
+
+      <div class="row" *ngFor="let u of users">
+
+        <div class="col">{{ u.username }}</div>
+        <div class="col">{{ u.email }}</div>
+        <div class="col">{{ u.mobileNumber }}</div>
+        <div class="col">{{ u.role }}</div>
+
+        <div class="col actions">
+          <button mat-icon-button color="primary" (click)="editUser(u)">
+            <mat-icon>swap_horiz</mat-icon>
+          </button>
+
+          <button mat-icon-button color="warn" (click)="deleteUser(u._id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Pagination -->
+    <div class="pager">
+      <button (click)="changePage(prevPage())" [disabled]="page <= 1">Prev</button>
+
+      <span>Page {{ page }} / {{ totalPages }}</span>
+
+      <button (click)="changePage(nextPage())" [disabled]="page >= totalPages">Next</button>
+    </div>
+
+  </div>
+
+
+  <!-- Empty state -->
+  <ng-template #emptyState>
+    <div *ngIf="loading">Loading...</div>
+    <div *ngIf="!loading">No users found.</div>
+  </ng-template>
+
+</div>

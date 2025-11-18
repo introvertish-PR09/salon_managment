@@ -1,0 +1,95 @@
+<!-- 🖤 Navbar
+<mat-toolbar color="primary" class="mat-elevation-z6 toolbar">
+  <span class="brand">Salon Magic</span>
+  <span class="spacer"></span>
+  <button mat-button routerLink="/login">Login</button>
+  <button mat-flat-button color="accent" routerLink="/register">Sign Up</button>
+</mat-toolbar> -->
+
+<app-nav></app-nav>
+
+<!-- ✨ Banner Section -->
+<section class="banner-container">
+  <div class="banner-content">
+    <h1>Beauty in Simplicity</h1>
+    <p>Style, elegance, and care — redefined.</p>
+    <button mat-raised-button color="accent" class="book-btn">
+      Book Service Now
+    </button>
+  </div>
+</section>
+
+<!-- 💇‍♀️ Featured Services -->
+<section class="services-section">
+  <h2 class="section-title">Our Featured Services</h2>
+  <mat-divider></mat-divider>
+
+  <div class="service-grid">
+    <mat-card class="service-card mat-elevation-z4" *ngFor="let s of services">
+      <img mat-card-image [src]="s.image" [alt]="s.name" />
+      <mat-card-content>
+        <h3>{{ s.name }}</h3>
+        <p>{{ s.duration }}</p>
+        <p class="price">₹{{ s.price }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>
+
+<!-- 💇 Footer -->
+<footer class="footer text-light pt-5 pb-3 mt-5">
+  <div class="container">
+    <div class="row">
+      <!-- Contact -->
+      <div class="col-md-3 mb-4">
+        <h5 class="fw-bold mb-3">Contact Us</h5>
+        <p class="small mb-1">📞 +91 98765 43210</p>
+        <p class="small mb-1">📧 support@salonmagic.com</p>
+        <p class="small">🏠 Pune, Maharashtra, India</p>
+      </div>
+
+      <!-- Best Services -->
+      <div class="col-md-3 mb-4">
+        <h5 class="fw-bold mb-3">Best Services</h5>
+        <ul class="list-unstyled small">
+          <li>💇 Hair Styling</li>
+          <li>💆 Spa & Relaxation</li>
+          <li>💅 Nail Care</li>
+          <li>🧴 Skin Treatments</li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-md-3 mb-4">
+        <h5 class="fw-bold mb-3">Quick Links</h5>
+        <ul class="list-unstyled small">
+          <li><a href="#" class="text-light text-decoration-none">About Us</a></li>
+          <li><a href="#" class="text-light text-decoration-none">Book Service</a></li>
+          <li><a href="#" class="text-light text-decoration-none">Offers</a></li>
+          <li><a href="#" class="text-light text-decoration-none">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Social Links -->
+      <div class="col-md-3 mb-4 text-center">
+        <h5 class="fw-bold mb-3">Follow Us</h5>
+        <div>
+          <i class="bi bi-facebook fs-4 me-3"></i>
+          <i class="bi bi-instagram fs-4 me-3"></i>
+          <i class="bi bi-twitter fs-4"></i>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-3 border-light">
+
+    <div class="text-center small mt-3">
+      <p class="mb-0">
+        © 2025 <strong>Salon Magic</strong> | All Rights Reserved
+      </p>
+      <p class="fst-italic slogan mt-2">
+        “Connecting beauty and confidence — one click at a time ✨”
+      </p>
+    </div>
+  </div>
+</footer>

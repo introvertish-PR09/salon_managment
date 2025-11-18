@@ -1,0 +1,95 @@
+<div class="admin-panel">
+  <div class="toolbar">
+    <div class="left">
+      <input
+        #searchBox
+        placeholder="Search booking id, service name or username"
+        (keyup.enter)="onSearch(searchBox.value)"
+      />
+
+      <button mat-icon-button (click)="onSearch(searchBox.value)">
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+
+    <div class="right">
+      <label>Rows:
+        <select #limitBox (change)="changeLimit(limitBox.value)">
+          <option *ngFor="let s of pageSizeOptions" [value]="s" [selected]="s===limit">{{ s }}</option>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  <div class="table-wrap" *ngIf="!loading && bookings.length > 0; else emptyState">
+
+    <!-- Header (desktop only) -->
+    <div class="table-head">
+      <div class="col">Booking ID</div>
+      <div class="col">User</div>
+      <div class="col">Email</div>
+      <div class="col">Service</div>
+      <div class="col">Price</div>
+      <div class="col">Date</div>
+      <div class="col">Time</div>
+      <div class="col">Status</div>
+      <div class="col">Actions</div>
+    </div>
+
+    <!-- Rows -->
+    <div class="table-body">
+      <div class="row" *ngFor="let b of bookings">
+        <div class="col booking-id">{{ b.bookingId || '-' }}</div>
+
+        <div class="col user">
+          {{ b.userId?.username || b.userId?.email || '-' }}
+        </div>
+
+        <div class="col email">
+          {{ b.userId?.email || '-' }}
+        </div>
+
+        <div class="col service">
+          {{ b.serviceId?.name || '-' }}
+        </div>
+
+        <div class="col price">
+          {{ b.serviceId?.price ? ('₹' + b.serviceId.price) : '-' }}
+        </div>
+
+        <div class="col date">{{ b.date || '-' }}</div>
+        <div class="col time">{{ b.time || '-' }}</div>
+
+        <div class="col status">
+          <mat-chip [color]="chipColor(b.status)" selected>{{ b.status }}</mat-chip>
+        </div>
+
+        <div class="col actions">
+          <button mat-stroked-button color="primary" (click)="updateStatus(b, 'Confirmed')" [disabled]="b.status === 'Confirmed' || b.status === 'Completed'">
+            Confirm
+          </button>
+
+          <button mat-stroked-button color="accent" (click)="updateStatus(b, 'Completed')" [disabled]="b.status === 'Completed'">
+            Complete
+          </button>
+
+          <button mat-icon-button color="warn" (click)="deleteBooking(b.bookingId)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pager">
+      <button (click)="changePage(prevPage())" [disabled]="page <= 1">Prev</button>
+      <span>Page {{ page }} / {{ totalPages }}</span>
+      <button (click)="changePage(nextPage())" [disabled]="page >= totalPages">Next</button>
+    </div>
+  </div>
+
+  <ng-template #emptyState>
+    <div *ngIf="loading">Loading...</div>
+    <div *ngIf="!loading">No bookings found.</div>
+  </ng-template>
+</div>
