@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "y",
+    "public": "dist/salon-frontend",
     "ignore": [
       "firebase.json",
       "**/.*",
